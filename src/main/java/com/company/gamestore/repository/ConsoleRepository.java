@@ -1,4 +1,8 @@
 package com.company.gamestore.repository;
 
-public interface ConsoleRepository {
+import com.company.gamestore.model.Console;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ConsoleRepository extends JpaRepository<Console, Integer> {
 }
