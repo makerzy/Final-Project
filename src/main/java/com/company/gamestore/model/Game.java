@@ -13,9 +13,12 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int game_id;
+    private String title;
     private String esrbRating;
     private String description;
     private double price;
     private String studio;
     private int quantity;
+
+
 }
