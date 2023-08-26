@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class GameController {
@@ -16,6 +17,14 @@ public class GameController {
 
 
     // update game
+    @PutMapping("/game/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateGame(@RequestBody Game game, @PathVariable Integer id) {
+        Optional<Game> game1 = GameRepo.findById(id);
+        if (game1.isPresent())
+            GameRepo.save(game);
+
+    }
 
 
 
@@ -59,8 +68,18 @@ public class GameController {
 
 
     // search game by esrb rating
+    @GetMapping("/game/esrbRating/{esrbRating}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Game> getGameByEsrbRating(@PathVariable String esrbRating) {
+        return GameRepo.findByEsrbRating(esrbRating);
+    }
 
 
     // search game by title
+    @GetMapping("/game/title/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Game> getGameByTitle(@PathVariable String title) {
+        return GameRepo.findByTitle(title);
+    }
 
 }
