@@ -46,6 +46,17 @@ public class GameController {
         return GameRepo.findAll();
     }
 
+    // read game by id
+    @GetMapping("/game/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Game getGameById(@PathVariable int id) {
+        Optional<Game> game = GameRepo.findById(id);
+        if (game.isPresent())
+            return game.get();
+        return null;
+    }
+
+
 
 
 
