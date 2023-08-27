@@ -54,7 +54,7 @@ class GameRepositoryTest {
 
     //Update Test
     @Test
-    public void shouldUpdateCustomer(){
+    public void shouldUpdateGame(){
         game = GameRepo.save(game);
 
         game.setTitle("FiFa 23");
@@ -71,7 +71,7 @@ class GameRepositoryTest {
 
     //Delete Test
     @Test
-    public void shouldDeleteADelete(){
+    public void shouldDeleteAGame(){
         game = GameRepo.save(game);
         Optional<Game> game1 = GameRepo.findById(game.getGame_id());
         assertEquals(game1.get(), game);
@@ -90,7 +90,7 @@ class GameRepositoryTest {
         game.setGame_id(15);
         GameRepo.save(game);
 
-        List<Game> games = GameRepo.findByStudio(game.getTitle());
+        List<Game> games = GameRepo.findByStudio(game.getStudio());
         assertEquals(games.size(), 2);
     }
 
@@ -102,7 +102,7 @@ class GameRepositoryTest {
         game.setGame_id(15);
         GameRepo.save(game);
 
-        List<Game> games = GameRepo.findByEsrbRating(game.getTitle());
+        List<Game> games = GameRepo.findByEsrbRating(game.getEsrbRating());
         assertEquals(games.size(), 2);
     }
 
@@ -114,7 +114,7 @@ class GameRepositoryTest {
         game.setGame_id(15);
         GameRepo.save(game);
 
-        List<Game> games = GameRepo.findByTitle(game.getTitle());
+        List<Game> games = GameRepo.findByTitle(game.get());
         assertEquals(games.size(), 2);
     }
 
