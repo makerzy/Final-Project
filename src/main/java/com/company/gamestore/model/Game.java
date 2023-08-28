@@ -1,29 +1,32 @@
 package com.company.gamestore.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "game")
+public class Game implements Serializable {
 
-public class Game {
     @Id
-    private Long game_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int game_id;
     private String title;
     private String esrbRating;
     private String description;
-    private Float price;
+    private double price;
     private String studio;
     private int quantity;
 
-    public Long getGame_id() {
+    public int getGame_id() {
         return game_id;
     }
 
-    public void setGame_id(Long game_id) {
+    public void setGame_id(int game_id) {
         this.game_id = game_id;
     }
 
@@ -51,11 +54,11 @@ public class Game {
         this.description = description;
     }
 
-    public Float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -80,7 +83,7 @@ public class Game {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return quantity == game.quantity && Objects.equals(game_id, game.game_id) && Objects.equals(title, game.title) && Objects.equals(esrbRating, game.esrbRating) && Objects.equals(description, game.description) && Objects.equals(price, game.price) && Objects.equals(studio, game.studio);
+        return game_id == game.game_id && Double.compare(price, game.price) == 0 && quantity == game.quantity && Objects.equals(title, game.title) && Objects.equals(esrbRating, game.esrbRating) && Objects.equals(description, game.description) && Objects.equals(studio, game.studio);
     }
 
     @Override

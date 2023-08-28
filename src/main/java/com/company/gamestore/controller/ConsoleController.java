@@ -1,8 +1,8 @@
 package com.company.gamestore.controller;
 
-import com.company.gamestore.model.*;
-import com.company.gamestore.repository.*;
-
+import com.company.gamestore.model.Console;
+import com.company.gamestore.model.Game;
+import com.company.gamestore.repository.ConsoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,19 +10,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 public class ConsoleController {
     @Autowired
     ConsoleRepository ConRepo;
 
 
-    // read console
+    // read all console
     @GetMapping("/console")
     @ResponseStatus(HttpStatus.OK)
     public List<Console> getAllConsole() {
         return ConRepo.findAll();
     }
+
+    // read console by ID
+    @GetMapping("/console/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Console getConsoleById(@PathVariable int id) {
+        Optional<Console> console = ConRepo.findById(id);
+        if (console.isPresent())
+            return console.get();
+        return null;
+    }
+
 
 
 
@@ -65,4 +75,4 @@ public class ConsoleController {
         return ConRepo.findByManufacturer(manufacturer);
     }
 
-    }
+}

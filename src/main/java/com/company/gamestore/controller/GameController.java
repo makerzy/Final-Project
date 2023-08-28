@@ -1,7 +1,8 @@
 package com.company.gamestore.controller;
 
-import com.company.gamestore.model.*;
-import com.company.gamestore.repository.*;
+import com.company.gamestore.model.Console;
+import com.company.gamestore.model.Game;
+import com.company.gamestore.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class GameController {
 
 
     // update game
-    @PutMapping("/game/{id}")
+    @PutMapping("/games/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateGame(@RequestBody Game game, @PathVariable Integer id) {
         Optional<Game> game1 = GameRepo.findById(id);
@@ -29,7 +30,7 @@ public class GameController {
 
     // create game
 
-    @PostMapping(value = "/game")
+    @PostMapping(value = "/games")
     @ResponseStatus(HttpStatus.CREATED)
     public Game addGame(@RequestBody Game game) {
         return GameRepo.save(game);
@@ -39,17 +40,28 @@ public class GameController {
 
 
     // read game
-    @GetMapping("/game")
+    @GetMapping("/games")
     @ResponseStatus(HttpStatus.OK)
     public List<Game> getAllGame() {
         return GameRepo.findAll();
     }
 
+    // read game by id
+    @GetMapping("/games/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Game getGameById(@PathVariable int id) {
+        Optional<Game> game = GameRepo.findById(id);
+        if (game.isPresent())
+            return game.get();
+        return null;
+    }
+
+
 
 
 
     // delete game
-    @DeleteMapping("/game/{id}")
+    @DeleteMapping("/games/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteGame(@PathVariable Integer id) {
         GameRepo.deleteById(id);
@@ -59,7 +71,7 @@ public class GameController {
 
 
     // search game by studio
-    @GetMapping("/game/studio/{studio}")
+    @GetMapping("/games/studio/{studio}")
     @ResponseStatus(HttpStatus.OK)
     public List<Game> getGameByStudio(@PathVariable String studio) {
         return GameRepo.findByStudio(studio);
@@ -67,7 +79,7 @@ public class GameController {
 
 
     // search game by esrb rating
-    @GetMapping("/game/esrbRating/{esrbRating}")
+    @GetMapping("/games/esrbRating/{esrbRating}")
     @ResponseStatus(HttpStatus.OK)
     public List<Game> getGameByEsrbRating(@PathVariable String esrbRating) {
         return GameRepo.findByEsrbRating(esrbRating);
@@ -75,7 +87,7 @@ public class GameController {
 
 
     // search game by title
-    @GetMapping("/game/title/{title}")
+    @GetMapping("/games/title/{title}")
     @ResponseStatus(HttpStatus.OK)
     public List<Game> getGameByTitle(@PathVariable String title) {
         return GameRepo.findByTitle(title);

@@ -1,31 +1,34 @@
 package com.company.gamestore.model;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
-
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "console")
-public class Console {
-    @Id
-    private Long console_id;
+public class Console implements Serializable {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int consoleId;
     private String model;
     private String manufacturer;
-    private String memory_amount;
+    private String memoryAmount;
     private String processor;
-    private Float price;
+    private double price;
     private int quantity;
 
-
-    public Long getId() {
-        return console_id;
+    public int getConsoleId() {
+        return consoleId;
     }
 
-    public void setId(Long id) {
-        this.console_id = id;
+    public void setConsoleId(int consoleId) {
+        this.consoleId = consoleId;
     }
 
     public String getModel() {
@@ -44,12 +47,12 @@ public class Console {
         this.manufacturer = manufacturer;
     }
 
-    public String getMemory_amount() {
-        return memory_amount;
+    public String getMemoryAmount() {
+        return memoryAmount;
     }
 
-    public void setMemory_amount(String memory_amount) {
-        this.memory_amount = memory_amount;
+    public void setMemoryAmount(String memoryAmount) {
+        this.memoryAmount = memoryAmount;
     }
 
     public String getProcessor() {
@@ -60,11 +63,11 @@ public class Console {
         this.processor = processor;
     }
 
-    public Float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -81,21 +84,21 @@ public class Console {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Console console = (Console) o;
-        return quantity == console.quantity && Objects.equals(console_id, console.console_id) && Objects.equals(model, console.model) && Objects.equals(manufacturer, console.manufacturer) && Objects.equals(memory_amount, console.memory_amount) && Objects.equals(processor, console.processor) && Objects.equals(price, console.price);
+        return consoleId == console.consoleId && Double.compare(price, console.price) == 0 && quantity == console.quantity && Objects.equals(model, console.model) && Objects.equals(manufacturer, console.manufacturer) && Objects.equals(memoryAmount, console.memoryAmount) && Objects.equals(processor, console.processor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(console_id, model, manufacturer, memory_amount, processor, price, quantity);
+        return Objects.hash(consoleId, model, manufacturer, memoryAmount, processor, price, quantity);
     }
 
     @Override
     public String toString() {
         return "Console{" +
-                "id=" + console_id +
+                "consoleId=" + consoleId +
                 ", model='" + model + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
-                ", memory_amount='" + memory_amount + '\'' +
+                ", memoryAmount='" + memoryAmount + '\'' +
                 ", processor='" + processor + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
