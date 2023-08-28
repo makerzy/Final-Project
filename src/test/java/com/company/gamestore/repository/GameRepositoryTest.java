@@ -34,7 +34,7 @@ class GameRepositoryTest {
     public void shouldCreateGame(){
         game = GameRepo.save(game);
 
-        Optional<Game> game1 = GameRepo.findById(game.getGame_id());
+        Optional<Game> game1 = GameRepo.findById(game.getGameId());
         assertEquals(game1.get(), game);
     }
 
@@ -43,7 +43,7 @@ class GameRepositoryTest {
     @Test
     public void shouldGetGameById(){
         GameRepo.save(game);
-        Optional<Game> game1 = GameRepo.findById(game.getGame_id());
+        Optional<Game> game1 = GameRepo.findById(game.getGameId());
         assertEquals(game1.get(), game);
     }
 
@@ -63,7 +63,7 @@ class GameRepositoryTest {
 
 // Update in DB
         GameRepo.save(game);
-        Optional<Game> game1 = GameRepo.findById(game.getGame_id());
+        Optional<Game> game1 = GameRepo.findById(game.getGameId());
         assertEquals(game1.get(), game);
     }
 
@@ -73,12 +73,12 @@ class GameRepositoryTest {
     @Test
     public void shouldDeleteAGame(){
         game = GameRepo.save(game);
-        Optional<Game> game1 = GameRepo.findById(game.getGame_id());
+        Optional<Game> game1 = GameRepo.findById(game.getGameId());
         assertEquals(game1.get(), game);
 
-        GameRepo.deleteById(game.getGame_id());
+        GameRepo.deleteById(game.getGameId());
 
-        game1 = GameRepo.findById(game.getGame_id());
+        game1 = GameRepo.findById(game.getGameId());
         assertFalse(game1.isPresent());
     }
 
@@ -87,7 +87,7 @@ class GameRepositoryTest {
     @Test
     public void shouldGetGameByStudio(){
         GameRepo.save(game);
-        game.setGame_id(15);
+        game.setGameId(15);
         GameRepo.save(game);
 
         List<Game> games = GameRepo.findByStudio(game.getStudio());
@@ -99,7 +99,7 @@ class GameRepositoryTest {
     @Test
     public void shouldGetGameByESRB(){
         GameRepo.save(game);
-        game.setGame_id(15);
+        game.setGameId(15);
         GameRepo.save(game);
 
         List<Game> games = GameRepo.findByEsrbRating(game.getEsrbRating());
@@ -111,10 +111,10 @@ class GameRepositoryTest {
     @Test
     public void shouldGetGameByTitle(){
         GameRepo.save(game);
-        game.setGame_id(15);
+        game.setGameId(15);
         GameRepo.save(game);
 
-        List<Game> games = GameRepo.findByTitle(game.get());
+        List<Game> games = GameRepo.findByTitle(game.getTitle());
         assertEquals(games.size(), 2);
     }
 
