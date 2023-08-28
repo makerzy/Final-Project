@@ -42,7 +42,7 @@ public class TShirtController {
 
     @PostMapping("/tshirts")
     @ResponseStatus(HttpStatus.CREATED)
-    public TShirt addBook(@RequestBody TShirt tShirt){
+    public TShirt addTShirt(@RequestBody TShirt tShirt){
         return tShirtRepository.save(tShirt);
     }
 
