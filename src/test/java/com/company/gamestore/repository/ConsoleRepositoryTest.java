@@ -1,5 +1,6 @@
 package com.company.gamestore.repository;
 
+import static org.junit.jupiter.api.Assertions.*;
 import com.company.gamestore.model.Console;
 import com.company.gamestore.model.Game;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+
 @SpringBootTest
 class ConsoleRepositoryTest {
 
@@ -101,7 +103,5 @@ class ConsoleRepositoryTest {
         List<Console> consoles = ConRepo.findByManufacturer(console.getManufacturer());
         assertEquals(consoles.size(), 2);
     }
-
-
 
 }

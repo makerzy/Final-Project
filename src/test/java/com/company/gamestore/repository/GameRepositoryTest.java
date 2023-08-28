@@ -1,5 +1,7 @@
 package com.company.gamestore.repository;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.company.gamestore.model.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -117,7 +119,6 @@ class GameRepositoryTest {
         List<Game> games = GameRepo.findByTitle(game.getTitle());
         assertEquals(games.size(), 2);
     }
-
 
 
 }
