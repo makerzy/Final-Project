@@ -13,9 +13,11 @@ import java.util.Objects;
 public class Game implements Serializable {
 
     @Id
+    @Column(name = "game_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int gameId;
     private String title;
+    @Column(name = "esr_rating")
     private String esrbRating;
     private String description;
     private double price;

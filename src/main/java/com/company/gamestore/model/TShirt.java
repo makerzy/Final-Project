@@ -13,6 +13,7 @@ import java.util.Objects;
 public class TShirt implements Serializable {
 
     @Id
+    @Column(name = "tshirt_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tshirtId;
     private String size;

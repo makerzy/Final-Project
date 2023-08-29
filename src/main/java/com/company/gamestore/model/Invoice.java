@@ -13,6 +13,7 @@ import java.util.Objects;
 public class Invoice implements Serializable {
 
     @Id
+    @Column(name = "invoice_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceId;
     private String name;
@@ -21,13 +22,17 @@ public class Invoice implements Serializable {
     private String state;
     private String zipCode;
 
+    @Column(name = "item_type")
     private String itemType;
+    @Column(name = "item_id")
     private int itemId;
     private int  quantity;
 
+    @Column(name = "unit_price")
     private double unitPrice;
     private double subtotal;
     private double tax;
+    @Column(name = "processing_fee")
     private double processingFee;
 
     private double total;

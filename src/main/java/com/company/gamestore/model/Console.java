@@ -14,10 +14,12 @@ public class Console implements Serializable {
 
 
     @Id
+    @Column(name = "console_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int consoleId;
     private String model;
     private String manufacturer;
+    @Column(name = "memory_amount")
     private String memoryAmount;
     private String processor;
     private double price;

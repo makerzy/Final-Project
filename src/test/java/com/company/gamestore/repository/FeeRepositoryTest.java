@@ -7,15 +7,25 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @SpringBootTest
 public class FeeRepositoryTest {
 
     @Autowired
     FeeRepository feeRepository;
-    private Fee fee;
 
     @Test
-    public void getFeeByState(){
+    public void shouldGetFeeByProductType(){
+        Fee fee = new Fee();
+        fee.setFee(13.99);
+        fee.setProductType("Console");
+
+        feeRepository.save(fee);
+        List<Fee> fees = feeRepository.findByProductType("Console");
+        assertTrue(fees.contains(fee));
 
     }
 }
