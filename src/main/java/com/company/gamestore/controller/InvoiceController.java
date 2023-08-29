@@ -2,6 +2,8 @@ package com.company.gamestore.controller;
 
 import com.company.gamestore.model.Invoice;
 import com.company.gamestore.repository.InvoiceRepository;
+import com.company.gamestore.service.InvoiceService;
+import com.company.gamestore.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,8 @@ import java.util.Optional;
 @RestController
 public class InvoiceController {
 
-
+    @Autowired
+    InvoiceService invoiceService;
 
     @Autowired
     InvoiceRepository invoiceRepository;
@@ -29,18 +32,18 @@ public class InvoiceController {
         return invoiceRepository.findById(id).orElse(null);
     }
 
-    @GetMapping("/invoices/items/{itemId}")
+    @GetMapping("/invoices/items/{name}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Invoice> getInvoiceByItemId(@PathVariable int itemId){
-        return invoiceRepository.findByItemId(itemId);
+    public List<Invoice> getInvoiceByCustomerName(@PathVariable String name){
+        return invoiceRepository.findByName(name);
     }
 
 
 
     @PostMapping("/invoices")
     @ResponseStatus(HttpStatus.CREATED)
-    public Invoice addInvoice(@RequestBody Invoice invoice){
-        return invoiceRepository.save(invoice);
+    public Invoice addInvoice(@RequestBody InvoiceViewModel invoiceViewModel){
+        return invoiceService.saveInvoice(invoiceViewModel);
     }
 
     @PutMapping("/invoices/{id}")

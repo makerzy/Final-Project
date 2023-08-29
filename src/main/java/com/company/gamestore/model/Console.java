@@ -104,8 +104,5 @@ public class Console implements Serializable {
                 ", quantity=" + quantity +
                 '}';
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0f87fa88037903488f8864fac99764d566d5d4b6
+
