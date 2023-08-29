@@ -3,29 +3,36 @@ package com.company.gamestore.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "invoice")
-public class Invoice {
+public class Invoice implements Serializable {
 
     @Id
+    @Column(name = "invoice_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceId;
     private String name;
     private String street;
     private String city;
+    private String state;
     private String zipCode;
 
+    @Column(name = "item_type")
     private String itemType;
+    @Column(name = "item_id")
     private int itemId;
     private int  quantity;
 
+    @Column(name = "unit_price")
     private double unitPrice;
-    private double subTotal;
+    private double subtotal;
     private double tax;
+    @Column(name = "processing_fee")
     private double processingFee;
 
     private double total;
@@ -60,6 +67,14 @@ public class Invoice {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getZipCode() {
@@ -102,12 +117,12 @@ public class Invoice {
         this.unitPrice = unitPrice;
     }
 
-    public double getSubTotal() {
-        return subTotal;
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public double getTax() {
@@ -139,12 +154,12 @@ public class Invoice {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Invoice invoice = (Invoice) o;
-        return invoiceId == invoice.invoiceId && itemId == invoice.itemId && quantity == invoice.quantity && Double.compare(invoice.unitPrice, unitPrice) == 0 && Double.compare(invoice.subTotal, subTotal) == 0 && Double.compare(invoice.tax, tax) == 0 && Double.compare(invoice.processingFee, processingFee) == 0 && Double.compare(invoice.total, total) == 0 && Objects.equals(name, invoice.name) && Objects.equals(street, invoice.street) && Objects.equals(city, invoice.city) && Objects.equals(zipCode, invoice.zipCode) && Objects.equals(itemType, invoice.itemType);
+        return invoiceId == invoice.invoiceId && itemId == invoice.itemId && quantity == invoice.quantity && Double.compare(invoice.unitPrice, unitPrice) == 0 && Double.compare(invoice.subtotal, subtotal) == 0 && Double.compare(invoice.tax, tax) == 0 && Double.compare(invoice.processingFee, processingFee) == 0 && Double.compare(invoice.total, total) == 0 && Objects.equals(name, invoice.name) && Objects.equals(street, invoice.street) && Objects.equals(city, invoice.city) && Objects.equals(state, invoice.state) && Objects.equals(zipCode, invoice.zipCode) && Objects.equals(itemType, invoice.itemType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(invoiceId, name, street, city, zipCode, itemType, itemId, quantity, unitPrice, subTotal, tax, processingFee, total);
+        return Objects.hash(invoiceId, name, street, city, state, zipCode, itemType, itemId, quantity, unitPrice, subtotal, tax, processingFee, total);
     }
 
     @Override
@@ -154,12 +169,13 @@ public class Invoice {
                 ", name='" + name + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
                 ", zipCode='" + zipCode + '\'' +
                 ", itemType='" + itemType + '\'' +
                 ", itemId=" + itemId +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
-                ", subTotal=" + subTotal +
+                ", subtotal=" + subtotal +
                 ", tax=" + tax +
                 ", processingFee=" + processingFee +
                 ", total=" + total +
