@@ -14,7 +14,7 @@ public class Game implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int game_id;
+    private int gameId;
     private String title;
     private String esrbRating;
     private String description;
@@ -22,12 +22,12 @@ public class Game implements Serializable {
     private String studio;
     private int quantity;
 
-    public int getGame_id() {
-        return game_id;
+    public int getGameId() {
+        return gameId;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public void setGameId(int game_id) {
+        this.gameId = game_id;
     }
 
     public String getTitle() {
@@ -83,18 +83,18 @@ public class Game implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return game_id == game.game_id && Double.compare(price, game.price) == 0 && quantity == game.quantity && Objects.equals(title, game.title) && Objects.equals(esrbRating, game.esrbRating) && Objects.equals(description, game.description) && Objects.equals(studio, game.studio);
+        return gameId == game.gameId && Double.compare(price, game.price) == 0 && quantity == game.quantity && Objects.equals(title, game.title) && Objects.equals(esrbRating, game.esrbRating) && Objects.equals(description, game.description) && Objects.equals(studio, game.studio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(game_id, title, esrbRating, description, price, studio, quantity);
+        return Objects.hash(gameId, title, esrbRating, description, price, studio, quantity);
     }
 
     @Override
     public String toString() {
         return "Game{" +
-                "game_id=" + game_id +
+                "gameId=" + gameId +
                 ", title='" + title + '\'' +
                 ", esrbRating='" + esrbRating + '\'' +
                 ", description='" + description + '\'' +
