@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class InvoiceService {
+public class ServiceLayer {
 
     private final double EXTRA_FEE= 15.49;
 
@@ -27,7 +26,7 @@ public class InvoiceService {
 
 
     @Autowired
-    public InvoiceService(
+    public ServiceLayer(
             InvoiceRepository invoiceRepository,
             TaxRepository taxRepository,
             FeeRepository feeRepository,
