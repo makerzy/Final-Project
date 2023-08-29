@@ -382,7 +382,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TShirt'
-  /invoices/items/{name}:
+  /invoices/customers/{name}:
     get:
       tags:
         - invoice-controller

@@ -32,7 +32,7 @@ public class InvoiceController {
         return invoiceRepository.findById(id).orElse(null);
     }
 
-    @GetMapping("/invoices/items/{name}")
+    @GetMapping("/invoices/customers/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<Invoice> getInvoiceByCustomerName(@PathVariable String name){
         return invoiceRepository.findByName(name);
